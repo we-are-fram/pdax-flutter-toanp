@@ -2,7 +2,7 @@ part of 'person_list_bloc.dart';
 
 enum PersonListStatus { initial, fetching, loadingMore, refreshing, loaded, error }
 
-class PersonListState {
+class PersonListState extends Equatable{
   final PersonListStatus status;
   final List<Person> personList;
   final bool hasReachedEnd;
@@ -38,4 +38,7 @@ class PersonListState {
       currentPage: currentPage ?? this.currentPage
     );
   }
+
+  @override
+  List<Object?> get props => [status, personList, hasReachedEnd, loadingMore, currentPage];
 }

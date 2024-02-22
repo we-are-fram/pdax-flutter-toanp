@@ -21,7 +21,9 @@ class _PersonListWidgetState extends State<PersonListWidget> {
   @override
   void dispose() {
     super.dispose();
-    _refreshCompleter?.complete();
+    if (_refreshCompleter != null && !_refreshCompleter!.isCompleted) {
+      _refreshCompleter!.complete();
+    }
     _refreshCompleter = null;
   }
 
@@ -30,7 +32,7 @@ class _PersonListWidgetState extends State<PersonListWidget> {
     return NotificationListener(
       onNotification: (ScrollNotification scrollInfo) {
         final state = context.read<PersonListBloc>().state;
-        if (state.hasReachedEnd || kIsWeb) return true;
+        if (state.hasReachedEnd || kIsWeb || state.status == PersonListStatus.loadingMore) return true;
         return _onLoadmore(
             context, scrollInfo, state.currentPage, state.personList.length);
       },
@@ -125,7 +127,8 @@ class _PersonListWidgetState extends State<PersonListWidget> {
 
   bool _onLoadmore(BuildContext context, ScrollNotification scrollInfo,
       int currentPage, int limit) {
-    if (scrollInfo.metrics.pixels >= scrollInfo.metrics.maxScrollExtent - 200) {
+      
+    if (scrollInfo is ScrollEndNotification && scrollInfo.metrics.pixels >= scrollInfo.metrics.maxScrollExtent) {
       context
           .read<PersonListBloc>()
           .add(LoadmorePersons(page: currentPage + 1, limit: limit));

@@ -9,7 +9,7 @@ import 'package:fram_flutter_assignment/src/features/person_list/presenter/ui/pa
 Route onGenerateRoute<T>(RouteSettings settings) {
   RouteSettings routeSettings = settings;
   Widget page = BlocProvider<PersonListBloc>(
-        create: (context) => getIt<PersonListBloc>()..add(FetchPersons()),
+        create: (context) => PersonListBloc(personRepository: getIt.get())..add(FetchPersons()),
         child: PersonListPage());
 
   if (settings.name == PersonDetailPage.routeName) {

@@ -9,7 +9,6 @@ import 'package:injectable/injectable.dart';
 part 'person_list_event.dart';
 part 'person_list_state.dart';
 
-@injectable
 class PersonListBloc extends Bloc<PersonListEvent, PersonListState> {
   final PersonRepository personRepository;
 
@@ -21,7 +20,7 @@ class PersonListBloc extends Bloc<PersonListEvent, PersonListState> {
             status: event.isRefresh
                 ? PersonListStatus.refreshing
                 : PersonListStatus.fetching));
-        List<Person> persons = await _loadPersonsFromRepository();
+        List<Person> persons = await _loadPersonsFromRepository(limit: event.limit);
         emit(state.copyWith(
             status: PersonListStatus.loaded,
             personList: persons,

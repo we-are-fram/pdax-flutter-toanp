@@ -13,6 +13,7 @@ class PersonRepositoryImpl implements PersonRepository {
   PersonRepositoryImpl({@injectable required this.remoteDataSource});
 
   Future<List<Person>> fetchPersons({int limit = 20}) async {
-    return remoteDataSource.fetchPersons(limit: limit);
+    return (await remoteDataSource.fetchPersonData(limit: limit)).map((e) => Person.fromJson(e)).toList();
   }
 }
+

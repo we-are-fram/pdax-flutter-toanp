@@ -20,9 +20,8 @@ class FetchPersons extends PersonListEvent {
 
 class LoadmorePersons extends PersonListEvent {
   final int page;
-  final int limit;
 
-  LoadmorePersons({required this.page, this.limit = 10});
+  LoadmorePersons({required this.page, super.limit = 10});
 
   @override
   List<Object?> get props => [page, limit];
