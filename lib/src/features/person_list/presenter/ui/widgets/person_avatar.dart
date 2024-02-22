@@ -9,7 +9,9 @@ class PersonAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircleAvatar(
       radius: 50,
-      backgroundImage: CachedNetworkImageProvider(image, cacheKey: image, errorListener: (p0) => {}),
+      child: CachedNetworkImage(imageUrl: image, cacheKey: image, errorListener: (p0) => {}, errorWidget: (context, url, error) {
+        return Icon(Icons.person, size: 50, color: Colors.white);
+      },),
     );
   }
 }
