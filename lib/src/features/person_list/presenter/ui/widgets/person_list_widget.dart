@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fram_flutter_assignment/src/features/person_list/data/models/person.dart';
 import 'package:fram_flutter_assignment/src/features/person_list/presenter/blocs/person_list/person_list_bloc.dart';
 import 'package:fram_flutter_assignment/src/features/person_list/presenter/ui/pages/person_detail_page.dart';
+import 'package:fram_flutter_assignment/src/features/person_list/presenter/ui/widgets/person_avatar.dart';
 
 class PersonListWidget extends StatefulWidget {
   const PersonListWidget({super.key});
@@ -30,7 +31,7 @@ class _PersonListWidgetState extends State<PersonListWidget> {
       onNotification: (ScrollNotification scrollInfo) {
         final state = context.read<PersonListBloc>().state;
         if (state.hasReachedEnd || kIsWeb) return true;
-        return _onNotification(
+        return _onLoadmore(
             context, scrollInfo, state.currentPage, state.personList.length);
       },
       child: RefreshIndicator(
@@ -70,10 +71,7 @@ class _PersonListWidgetState extends State<PersonListWidget> {
               Navigator.of(context)
                   .pushNamed(PersonDetailPage.routeName, arguments: person);
             },
-            leading: CircleAvatar(
-              backgroundImage: NetworkImage(person.image),
-              radius: 50,
-            ),
+            leading: PersonAvatar(image: person.image),
             title: Text(person.name,
                 style: TextStyle(fontWeight: FontWeight.bold)),
             subtitle: Text(person.email),
@@ -125,10 +123,9 @@ class _PersonListWidgetState extends State<PersonListWidget> {
     );
   }
 
-  bool _onNotification(BuildContext context, ScrollNotification scrollInfo,
+  bool _onLoadmore(BuildContext context, ScrollNotification scrollInfo,
       int currentPage, int limit) {
-    if (scrollInfo is ScrollEndNotification &&
-        scrollInfo.metrics.pixels >= scrollInfo.metrics.maxScrollExtent - 100) {
+    if (scrollInfo.metrics.pixels >= scrollInfo.metrics.maxScrollExtent - 200) {
       context
           .read<PersonListBloc>()
           .add(LoadmorePersons(page: currentPage + 1, limit: limit));

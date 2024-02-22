@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class PersonAvatar extends StatelessWidget {
@@ -7,8 +8,8 @@ class PersonAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      backgroundImage: NetworkImage(image),
       radius: 50,
+      backgroundImage: CachedNetworkImageProvider(image, cacheKey: image, errorListener: (p0) => {}),
     );
   }
 }
