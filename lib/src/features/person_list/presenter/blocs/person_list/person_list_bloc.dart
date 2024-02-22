@@ -32,7 +32,6 @@ class PersonListBloc extends Bloc<PersonListEvent, PersonListState> {
     }));
 
     on<LoadmorePersons>(((event, emit) async {
-      print(event.page);
       try {
         emit(state.copyWith(status: PersonListStatus.loadingMore));
         List<Person> persons =
