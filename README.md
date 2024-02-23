@@ -1,4 +1,4 @@
-# Project Name
+# Flutter Assignment
 
 This project contains a person list and person detail page.
 
