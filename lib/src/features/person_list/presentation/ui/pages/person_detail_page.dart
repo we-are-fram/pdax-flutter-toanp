@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fram_flutter_assignment/src/features/person_list/data/models/person.dart';
-import 'package:fram_flutter_assignment/src/features/person_list/presenter/ui/widgets/person_avatar.dart';
+import 'package:fram_flutter_assignment/src/features/person_list/presentation/ui/widgets/person_avatar.dart';
 
 class PersonDetailPage extends StatelessWidget {
   final Person person;

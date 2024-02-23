@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fram_flutter_assignment/src/base/router.dart';
 import 'package:fram_flutter_assignment/src/di/injection.dart';
-import 'package:fram_flutter_assignment/src/features/person_list/presenter/ui/pages/person_list_page.dart';
+import 'package:fram_flutter_assignment/src/features/person_list/presentation/ui/pages/person_list_page.dart';
 
 void main() {
   configureDependencies();

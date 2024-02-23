@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fram_flutter_assignment/src/di/injection.dart';
 import 'package:fram_flutter_assignment/src/features/person_list/data/models/person.dart';
-import 'package:fram_flutter_assignment/src/features/person_list/presenter/blocs/person_list/person_list_bloc.dart';
-import 'package:fram_flutter_assignment/src/features/person_list/presenter/ui/pages/person_detail_page.dart';
-import 'package:fram_flutter_assignment/src/features/person_list/presenter/ui/pages/person_list_page.dart';
+import 'package:fram_flutter_assignment/src/features/person_list/presentation/blocs/person_list/person_list_bloc.dart';
+import 'package:fram_flutter_assignment/src/features/person_list/presentation/ui/pages/person_detail_page.dart';
+import 'package:fram_flutter_assignment/src/features/person_list/presentation/ui/pages/person_list_page.dart';
 
 Route onGenerateRoute<T>(RouteSettings settings) {
   RouteSettings routeSettings = settings;
